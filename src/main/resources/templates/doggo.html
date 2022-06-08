@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feed the Doggo</title>
+</head>
+<body>
+<h1>Click on the doggo to give him a carrot</h1>
+<br><img id="dogpic" src="doggo.jpg"  alt="picture of doggo">
+<br><br><span id="counter"></span>
+
+<script>
+    var dogpic = document.getElementById("dogpic");
+    var counter = document.getElementById("counter");
+    dogpic.onclick = function(e){
+      fetch("/dogclicker", {method:"POST"})
+            .then( response => response.text() )
+            .then( text => counter.textContent = text );
+
+    }
+     // optional
+    document.body.onload = function (e) {
+        fetch("/dogclicker", {method:"GET"})
+            .then( response => response.text() )
+            .then( text => counter.textContent = text )
+        ;
+    }
+
+
+
+</script>
+
+</body>
+</html>
